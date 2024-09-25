@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class Secondscreen extends StatelessWidget {
   Secondscreen({super.key});
-  late String result, comment;
+  String result = "Normal", comment = "Comment";
   Color textColor = Colors.white;
 
   @override
@@ -28,7 +28,9 @@ class Secondscreen extends StatelessWidget {
       }
     }
 
+    BMIStatus();
     return Scaffold(
+      backgroundColor: Color(0xff041732),
       appBar: AppBar(
         backgroundColor: Color(0xff041732),
         centerTitle: true,
@@ -42,7 +44,7 @@ class Secondscreen extends StatelessWidget {
         ),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Text("Your BMI Is",
               style: TextStyle(
@@ -67,33 +69,43 @@ class Secondscreen extends StatelessWidget {
                     )),
                 Text("$comment",
                     style: TextStyle(
-                      color: Colors.white,
+                      color: textColor,
                       fontWeight: FontWeight.bold,
                       fontSize: 40,
                     ))
               ],
             ),
           ),
-          Expanded(
-              child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10.0),
-            child: Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                  color: Color(0xff041732),
-                  borderRadius: BorderRadius.circular(20)),
-              child: MaterialButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                color: Color(0xff041732),
-                child: Text(
-                  "Recalculate",
-                  style: TextStyle(fontSize: 25, color: Colors.white),
+          SizedBox(
+            height: 20,
+          ),
+          Row(
+            children: [
+              Expanded(
+                  child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10.0),
+                child: Container(
+                  width: double.infinity,
+                  height: 50,
+                  decoration: BoxDecoration(
+                      color: Color(0xff041732),
+                      borderRadius: BorderRadius.circular(20)),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: textColor,
+                    ),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text(
+                      "Recalculate",
+                      style: TextStyle(fontSize: 25, color: Colors.white),
+                    ),
+                  ),
                 ),
-              ),
-            ),
-          ))
+              )),
+            ],
+          )
         ],
       ),
     );

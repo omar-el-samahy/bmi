@@ -5,152 +5,156 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatefulWidget {
-  MyApp({super.key});
-
+class MyApp extends StatelessWidget {
   @override
-  State<MyApp> createState() => _MyAppState();
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      routes: {"s2": (context) => Secondscreen()},
+      home: BMICalculatorScreen(),
+    );
+  }
 }
 
-class _MyAppState extends State<MyApp> {
+class BMICalculatorScreen extends StatefulWidget {
+  @override
+  State<BMICalculatorScreen> createState() => _BMICalculatorScreenState();
+}
+
+class _BMICalculatorScreenState extends State<BMICalculatorScreen> {
   double h = 100, age = 20, weight = 50;
   late double calculatedBMI;
   late String g;
   bool tap = false;
   Color containerColor1 = Color(0xff041732);
   Color containerColor2 = Color(0xff041732);
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      routes: {"s2": (context) => Secondscreen()},
-      home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Color(0xff041732),
-          centerTitle: true,
-          title: Text(
-            "BMI Calculator",
-            style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: 25,
-            ),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xff041732),
+        centerTitle: true,
+        title: Text(
+          "BMI Calculator",
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 25,
           ),
         ),
-        /////////////////////////////////////////////////////////////////////////////////Body
-        body: Column(
-          children: [
-            /////////////////////////////////////////////////////////////////////////////////Gender
-            Expanded(
-                child: Padding(
+      ),
+      body: Column(
+        children: [
+          // Gender Selection
+          Expanded(
+            child: Padding(
               padding: const EdgeInsets.all(10.0),
-              child: Row(children: [
-                /////////////////////////////////////////////////////////////////////////////////Male
-                Expanded(
+              child: Row(
+                children: [
+                  // Male
+                  Expanded(
                     child: Container(
-                        decoration: BoxDecoration(
-                            color: containerColor1,
-                            borderRadius: BorderRadius.circular(20)),
-                        child: InkWell(
-                          onTap: () {
-                            setState(() {
-                              tap = true;
-                              g = "male";
-                              if (tap == true && g == "male") {
-                                containerColor1 = Colors.green;
-                                containerColor2 = Color(
-                                    0xff041732); // Change the color on tap
-                              }
-                            });
-                          },
-                          child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.male_rounded,
-                                  size: 100,
-                                  color: Colors.white,
-                                ),
-                                Text(
-                                  "Male",
-                                  style: TextStyle(
-                                      fontSize: 35, color: Colors.white),
-                                )
-                              ]),
-                        ))),
-                /////////////////////////////////////////////////////////////////////////////////Female
-                SizedBox(width: 10),
-                Expanded(
+                      decoration: BoxDecoration(
+                        color: containerColor1,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: InkWell(
+                        onTap: () {
+                          setState(() {
+                            tap = true;
+                            g = "male";
+                            if (tap == true && g == "male") {
+                              containerColor1 = Colors.green;
+                              containerColor2 = Color(0xff041732);
+                            }
+                          });
+                        },
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.male_rounded,
+                                size: 100, color: Colors.white),
+                            Text(
+                              "Male",
+                              style:
+                                  TextStyle(fontSize: 35, color: Colors.white),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 10),
+                  // Female
+                  Expanded(
                     child: Container(
-                        decoration: BoxDecoration(
-                            color: containerColor2,
-                            borderRadius: BorderRadius.circular(20)),
-                        child: InkWell(
-                          onTap: () {
-                            setState(() {
-                              tap = true;
-                              g = "female";
-                              if (tap == true && g == "female") {
-                                containerColor2 = Colors.green;
-                                containerColor1 = Color(
-                                    0xff041732); // Change the color on tap
-                              }
-                            });
-                          },
-                          child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.female_rounded,
-                                  size: 100,
-                                  color: Colors.white,
-                                ),
-                                Text(
-                                  "Female",
-                                  style: TextStyle(
-                                      fontSize: 35, color: Colors.white),
-                                )
-                              ]),
-                        )))
-              ]),
-            )),
-            /////////////////////////////////////////////////////////////////////////////////Height
-            Expanded(
-                child: Padding(
+                      decoration: BoxDecoration(
+                        color: containerColor2,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: InkWell(
+                        onTap: () {
+                          setState(() {
+                            tap = true;
+                            g = "female";
+                            if (tap == true && g == "female") {
+                              containerColor2 = Colors.green;
+                              containerColor1 = Color(0xff041732);
+                            }
+                          });
+                        },
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.female_rounded,
+                                size: 100, color: Colors.white),
+                            Text(
+                              "Female",
+                              style:
+                                  TextStyle(fontSize: 35, color: Colors.white),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          // Height Slider
+          Expanded(
+            child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   color: Color(0xff041732),
                 ),
-                width: double.infinity,
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("Height",
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.white70,
-                          )),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text("${h.round()}",
-                                style: TextStyle(
-                                    fontSize: 35, color: Colors.white)),
-                            Text("cm",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.white70,
-                                )),
-                          ],
-                        ),
+                      Text(
+                        "Height",
+                        style: TextStyle(fontSize: 20, color: Colors.white70),
                       ),
-                      /////////////////////////////////////////////////////////////////////////////////Slider
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            "${h.round()}",
+                            style: TextStyle(fontSize: 35, color: Colors.white),
+                          ),
+                          Text(
+                            "cm",
+                            style:
+                                TextStyle(fontSize: 20, color: Colors.white70),
+                          ),
+                        ],
+                      ),
                       Slider(
                         value: h,
                         onChanged: (double x) {
@@ -166,101 +170,121 @@ class _MyAppState extends State<MyApp> {
                   ),
                 ),
               ),
-            )),
-            /////////////////////////////////////////////////////////////////////////////////Age & Weight
-            Expanded(
-                child: Padding(
+            ),
+          ),
+          // Age & Weight
+          Expanded(
+            child: Padding(
               padding: const EdgeInsets.all(10.0),
-              child: Row(children: [
-                Expanded(
+              child: Row(
+                children: [
+                  // Age
+                  Expanded(
                     child: Container(
-                        decoration: BoxDecoration(
-                            color: Color(0xff041732),
-                            borderRadius: BorderRadius.circular(20)),
-                        child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                      decoration: BoxDecoration(
+                        color: Color(0xff041732),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Age",
+                            style: TextStyle(fontSize: 25, color: Colors.white),
+                          ),
+                          Text(
+                            "${age.round()}",
+                            style: TextStyle(fontSize: 35, color: Colors.white),
+                          ),
+                          Row(
                             children: [
-                              Text(
-                                "Age",
-                                style: TextStyle(
-                                    fontSize: 25, color: Colors.white),
+                              Expanded(
+                                child: FloatingActionButton(
+                                  heroTag: null,
+                                  shape: CircleBorder(),
+                                  onPressed: ageDown,
+                                  backgroundColor: Colors.white,
+                                  child: Icon(Icons.remove,
+                                      color: Color(0xff041732)),
+                                ),
                               ),
-                              Text(
-                                "${age.round()}",
-                                style: TextStyle(
-                                    fontSize: 35, color: Colors.white),
+                              Expanded(
+                                child: FloatingActionButton(
+                                  heroTag: null,
+                                  shape: CircleBorder(),
+                                  onPressed: ageUp,
+                                  backgroundColor: Colors.white,
+                                  child:
+                                      Icon(Icons.add, color: Color(0xff041732)),
+                                ),
                               ),
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: FloatingActionButton(
-                                        shape: CircleBorder(),
-                                        onPressed: ageDown,
-                                        backgroundColor: Colors.white,
-                                        child: Icon(Icons.remove,
-                                            color: Color(0xff041732))),
-                                  ),
-                                  Expanded(
-                                    child: FloatingActionButton(
-                                        shape: CircleBorder(),
-                                        onPressed: ageUp,
-                                        backgroundColor: Colors.white,
-                                        child: Icon(Icons.add,
-                                            color: Color(0xff041732))),
-                                  )
-                                ],
-                              )
-                            ]))),
-                SizedBox(width: 10),
-                Expanded(
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 10),
+                  // Weight
+                  Expanded(
                     child: Container(
-                        decoration: BoxDecoration(
-                            color: Color(0xff041732),
-                            borderRadius: BorderRadius.circular(20)),
-                        child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                      decoration: BoxDecoration(
+                        color: Color(0xff041732),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Weight",
+                            style: TextStyle(fontSize: 25, color: Colors.white),
+                          ),
+                          Text(
+                            "${weight.round()}",
+                            style: TextStyle(fontSize: 35, color: Colors.white),
+                          ),
+                          Row(
                             children: [
-                              Text(
-                                "Weight",
-                                style: TextStyle(
-                                    fontSize: 25, color: Colors.white),
+                              Expanded(
+                                child: FloatingActionButton(
+                                  heroTag: null,
+                                  shape: CircleBorder(),
+                                  onPressed: wDown,
+                                  backgroundColor: Colors.white,
+                                  child: Icon(Icons.remove,
+                                      color: Color(0xff041732)),
+                                ),
                               ),
-                              Text(
-                                "${weight.round()}",
-                                style: TextStyle(
-                                    fontSize: 35, color: Colors.white),
+                              Expanded(
+                                child: FloatingActionButton(
+                                  heroTag: null,
+                                  shape: CircleBorder(),
+                                  onPressed: wUp,
+                                  backgroundColor: Colors.white,
+                                  child:
+                                      Icon(Icons.add, color: Color(0xff041732)),
+                                ),
                               ),
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: FloatingActionButton(
-                                        shape: CircleBorder(),
-                                        onPressed: wDown,
-                                        backgroundColor: Colors.white,
-                                        child: Icon(Icons.remove,
-                                            color: Color(0xff041732))),
-                                  ),
-                                  Expanded(
-                                    child: FloatingActionButton(
-                                        shape: CircleBorder(),
-                                        onPressed: wUp,
-                                        backgroundColor: Colors.white,
-                                        child: Icon(Icons.add,
-                                            color: Color(0xff041732))),
-                                  ),
-                                ],
-                              )
-                            ]))),
-              ]),
-            )),
-            Expanded(
-                child: Padding(
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          // Calculate BMI Button
+          Expanded(
+            child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
               child: Container(
                 width: double.infinity,
                 decoration: BoxDecoration(
-                    color: Color(0xff041732),
-                    borderRadius: BorderRadius.circular(20)),
+                  color: Color(0xff041732),
+                  borderRadius: BorderRadius.circular(20),
+                ),
                 child: MaterialButton(
                   onPressed: () {
                     calculatedBMI = calc();
@@ -268,7 +292,8 @@ class _MyAppState extends State<MyApp> {
                         arguments: calculatedBMI);
                   },
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20)),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
                   color: Color(0xff041732),
                   child: Text(
                     "Calculate BMI",
@@ -276,9 +301,9 @@ class _MyAppState extends State<MyApp> {
                   ),
                 ),
               ),
-            ))
-          ],
-        ),
+            ),
+          ),
+        ],
       ),
     );
   }
