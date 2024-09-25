@@ -56,19 +56,20 @@ class Secondscreen extends StatelessWidget {
           Container(
             child: Column(
               children: [
-                Text("$result",
-                    style: TextStyle(
-                      color: textColor,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 40,
-                    )),
                 Text("${bmi.round()}",
                     style: TextStyle(
                       color: textColor,
                       fontWeight: FontWeight.bold,
                       fontSize: 40,
                     )),
+                Text("$result",
+                    style: TextStyle(
+                      color: textColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 40,
+                    )),
                 Text("$comment",
+                    textAlign: TextAlign.center,
                     style: TextStyle(
                       color: textColor,
                       fontWeight: FontWeight.bold,
