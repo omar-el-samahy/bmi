@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class Secondscreen extends StatelessWidget {
   Secondscreen({super.key});
   String result = "Normal", comment = "Comment";
