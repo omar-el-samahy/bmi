@@ -15,7 +15,7 @@ class _CalculatorState extends State<Calculator> {
   TextEditingController t1 = TextEditingController();
   TextEditingController t2 = TextEditingController();
   String error = "";
-  dynamic result =0;
+  dynamic result = 0;
   @override
   add() {
     setState(() {
@@ -46,8 +46,9 @@ class _CalculatorState extends State<Calculator> {
       double n1 = double.tryParse(t1.text)!;
       double n2 = double.tryParse(t2.text)!;
       result = n1 / n2;
-      if(n2 == 0){
-result= "Infinity\nBecause You Divided By Zero\n You Can't Divide By Zero \nPlease Enter Different Number";
+      if (n2 == 0) {
+        result =
+            "Infinity\nBecause You Divided By Zero\n You Can't Divide By Zero \nPlease Enter Different Number";
       }
     });
   }
@@ -89,7 +90,6 @@ result= "Infinity\nBecause You Divided By Zero\n You Can't Divide By Zero \nPlea
                               borderSide: BorderSide(color: Colors.green),
                               borderRadius: BorderRadius.circular(15))),
                     ),
-                    
                     TextFormField(
                       keyboardType: TextInputType.number,
                       controller: t2,

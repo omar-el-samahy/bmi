@@ -18,8 +18,8 @@ class _BMICalculatorScreenState extends State<BMICalculatorScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
-          selectedItemColor: Colors.green,
-          unselectedItemColor: Colors.red,
+          selectedItemColor: Color(0xff041732),
+          unselectedItemColor: Colors.blue,
           currentIndex: i,
           onTap: (int x) {
             i = x;
