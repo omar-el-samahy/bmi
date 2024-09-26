@@ -12,10 +12,26 @@ class _BMICalculatorScreenState extends State<BMICalculatorScreen> {
   bool tap = false;
   Color containerColor1 = Color(0xff041732);
   Color containerColor2 = Color(0xff041732);
+  int i = 1;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: BottomNavigationBar(
+          selectedItemColor: Colors.green,
+          unselectedItemColor: Colors.red,
+          currentIndex: i,
+          onTap: (int x) {
+            i = x;
+            setState(() {});
+          },
+          items: [
+            BottomNavigationBarItem(icon: Icon(Icons.contacts), label: "Login"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.home_max_outlined), label: "BMI"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.calculate_outlined), label: "Calculator"),
+          ]),
       appBar: AppBar(
         backgroundColor: Color(0xff041732),
         centerTitle: true,
